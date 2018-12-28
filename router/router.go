@@ -6,12 +6,18 @@ import (
 	"../context"
 )
 
+// https://github.com/acmacalister/helm
 type Handler http.Handler
 
 type Router struct {
 	tree *node
 	rootHandler Handler
 }
+
+const GET = "GET"
+const POST = "POST"
+const PUT = "PUT"
+const DELETE = "DELETE"
 
 func New(h Handler) *Router {
 	return &Router{
@@ -28,6 +34,22 @@ func (r *Router) Handle(method, path string, h Handler) {
 		panic("Path must starts with a /.")
 	}
 	r.tree.addNode(method, path, h)
+}
+
+func (r *Router) Get(path string, h Handler) {
+	r.Handle(GET, path, h)
+}
+
+func (r *Router) POST(path string, h Handler) {
+	r.Handle(POST, path, h)
+}
+
+func (r *Router) PUT(path string, h Handler) {
+	r.Handle(PUT, path, h)
+}
+
+func (r *Router) DELETE(path string, h Handler) {
+	r.Handle(DELETE, path, h)
 }
 
 func (r *Router) ServeHTTP(w http.ResponseWriter, req *http.Request) {

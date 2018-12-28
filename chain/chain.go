@@ -2,7 +2,7 @@ package chain
 
 import "net/http"
 
-// code from https://github.com/justinas/alice
+// https://github.com/justinas/alice
 type Constructor func(http.Handler) http.Handler
 
 type Chain struct {

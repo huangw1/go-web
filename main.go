@@ -25,7 +25,7 @@ func detail(w http.ResponseWriter, r *http.Request) {
 func main() {
 	middles := chain.New(middlewares.RecoverMiddleware, middlewares.LoggingMiddleware)
 	r := router.New(middles.ThenFunc(index))
-	r.Handle("GET", "/list", middles.ThenFunc(list))
-	r.Handle("GET", "/list/:id", middles.ThenFunc(detail))
+	r.Get("/list", middles.ThenFunc(list))
+	r.Get("/list/:id", middles.ThenFunc(detail))
 	http.ListenAndServe(":8080", r)
 }
