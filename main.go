@@ -7,6 +7,7 @@ import (
 	"./middlewares"
 	"./router"
 	"./context"
+	"./ini"
 	"os"
 	"path"
 )
@@ -35,5 +36,10 @@ func main() {
 	r := router.New(middles.ThenFunc(index))
 	r.Get("/list", middles.ThenFunc(list))
 	r.Get("/list/:id", middles.ThenFunc(detail))
-	http.ListenAndServe(":8080", r)
+	cfg, err := ini.Load("conf.ini")
+	if err != nil {
+		fmt.Printf("cfg error %+v", err)
+	}
+	port := cfg.Section("server").Key("port").String()
+	http.ListenAndServe(fmt.Sprintf(":%s", port), r)
 }
