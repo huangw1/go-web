@@ -3,7 +3,7 @@ package router
 import (
 	"net/http"
 	"strings"
-	"../context"
+	"github.com/huangw1/go-web/context"
 )
 
 // https://github.com/acmacalister/helm

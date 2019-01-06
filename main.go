@@ -3,11 +3,11 @@ package main
 import (
 	"net/http"
 	"fmt"
-	"./chain"
-	"./middlewares"
-	"./router"
-	"./context"
-	"./ini"
+	"github.com/huangw1/go-web/chain"
+	"github.com/huangw1/go-web/middlewares"
+	"github.com/huangw1/go-web/router"
+	"github.com/huangw1/go-web/context"
+	"github.com/huangw1/go-web/ini"
 	"os"
 	"path"
 )

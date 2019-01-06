@@ -2,7 +2,7 @@ package middlewares
 
 import (
 	"net/http"
-	"../util"
+	"github.com/huangw1/go-web/util"
 )
 
 func Static(directories ...string) func(next http.Handler) http.Handler {
